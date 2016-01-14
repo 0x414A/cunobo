@@ -37,4 +37,5 @@ node_modules
 
 # Ignore temp files
 *.swp
+*.swo
 *.un~
