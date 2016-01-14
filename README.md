@@ -37,7 +37,7 @@ $ docker-compose run web npm install
 Set up the database:
 
 ```sh
-$ docker-compose run web bundle rake db:setup
+$ docker-compose run web bundle exec rake db:setup
 ```
 
 Bring up the server:
