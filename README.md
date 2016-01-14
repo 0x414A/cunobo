@@ -12,6 +12,10 @@ Go into the cloned repo:
 $ cd cunobo
 ```
 
+May need to load the environment variables for docker:
+```sh
+$ eval $(docker-machine env dev)
+```
 Then build the image:
 
 ```sh
