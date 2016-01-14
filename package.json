@@ -1,0 +1,14 @@
+{
+  "name": "cunobo_app",
+  "version": "0.0.1",
+  "description": "A barebones Rails app, which can easily be deployed to Heroku.",
+  "devDependencies": {
+    "browserify": "^10.2.4",
+    "browserify-incremental": "^3.0.1",
+    "vue": "^1.0.14",
+    "vueify": "^8.3.2"
+  },
+  "engines": {
+    "node": ">= 0.10"
+  }
+}
