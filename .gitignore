@@ -34,3 +34,7 @@ bower.json
 .DS_Store
 node_modules
 .env
+
+# Ignore temp files
+*.swp
+*.un~
