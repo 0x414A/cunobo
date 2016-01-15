@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20160115044156) do
   enable_extension "plpgsql"
 
   create_table "entries", force: :cascade do |t|
+    t.integer  "student_question_id"
     t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "questions", force: :cascade do |t|
