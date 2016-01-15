@@ -7,6 +7,20 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create fake questions for testing
-
 fake_questions = 10.times.map { { text: Faker::Lorem.sentence } }
 Question.create(fake_questions)
+
+# Create fake users
+generated_password = "n0ts3cur3"
+fake_users = 30.times.map do
+  {
+    email: Faker::Internet.email,
+    password: generated_password,
+    password_confirmation: generated_password
+  }
+end
+User.create!(fake_users)
+
+# Create fake students
+fake_students = User.ids.map{|user_id| { user_id: user_id } }
+Student.create!(fake_students)

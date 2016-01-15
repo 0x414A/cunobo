@@ -3,4 +3,5 @@ class Student < ActiveRecord::Base
   validates :user_id, presence: true
 
   has_many :student_questions
+
 end
