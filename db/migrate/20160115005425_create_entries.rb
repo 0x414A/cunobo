@@ -1,6 +1,6 @@
-class CreateJournalEntries < ActiveRecord::Migration
+class CreateEntries < ActiveRecord::Migration
   def change
-    create_table :journal_entries do |t|
+    create_table :entries do |t|
       t.integer :journal_id
       t.string :title
       t.text :content
