@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Create fake questions for testing
+
+fake_questions = 10.times.map { { text: Faker::Lorem.sentence } }
+Question.create(fake_questions)
