@@ -1,23 +1,49 @@
-<style>
+<style lang="scss">
+  $medium-color: #797A9E;
+
   .title-bar {
     height: 40px;
     border-bottom-style: solid;
-    border-bottom-color: #797A9E;
+    border-bottom-color: $medium-color;
     border-bottom-width: 1px;
   }
 
   .app-title {
     padding-left: 20px;
   }
+
+  .user-status {
+    .button {
+      min-width: 80px;
+      height: 28px;
+      margin-top: 5px;
+      margin-left: 15px;
+      margin-right: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      color: $medium-color;
+      line-height: 28px;
+      border-radius: 3px;
+      border: 1px solid $medium-color;
+    }
+
+    .current-user {
+      font-size: 10pt;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: $medium-color;
+    }
+  }
 </style>
 
 <template>
   <div class="title-bar u-full-width">
     <span class="app-title app-title-font">cunobo.</span>
-
-    <span class="" v-if="currentUser">{{currentUser}}</span>
-    <span class="" v-else>Sign in</span>
-  </div>
+    <div class="user-status u-pull-right">  
+      <span class="current-user" v-if="currentUser">{{currentUser}}</span>
+      <a class="button" data-method="delete" v-if="currentUser" href="/users/sign_out">Sign out</a>  
+      <a class="button" href="/users/sign_in" v-else>Sign in</a>  
+    </div> 
+ </div>
 </template>
 
 <script lang="coffee">
