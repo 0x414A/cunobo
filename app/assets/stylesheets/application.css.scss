@@ -15,3 +15,17 @@
  */
 
 @import "skeleton-2.0.4";
+@import 'normalize-3.0.2';
+@import 'constants';
+
+body {
+  background-color: $background-color;
+}
+
+.app-title-font {
+    font-family: $font-stack;
+    font-size: 20pt;
+    font-weight: 600;
+    color: $medium-color;
+    letter-spacing: 0.8px;
+}
