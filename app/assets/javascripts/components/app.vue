@@ -1,19 +1,18 @@
 <style>
-  .red {
-    color: #f00;
-  }
 </style>
 
 <template>
-  <h1 class="red">{{msg}}</h1>
+  <title-bar></title-bar>
 </template>
 
 <script>
+  var TitleBar = require('./title_bar.vue')
+
   module.exports = {
     data: function () {
-      return {
-        msg: 'Hello world!'
-      }
+    },
+    components: {
+      'title-bar': TitleBar
     }
   }
 </script>
