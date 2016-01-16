@@ -117,7 +117,7 @@
 
   module.exports =
     data: ->
-      question: 'What is something you want to do in 2016? What can you do to make it happen?'
+      question: ''
       prompt:
         author: 'Cunobot'
         timestamp: null
@@ -125,20 +125,24 @@
       newEntry: ''
       entries: []
     methods:
+      refreshStudentQuestion: ->
+        @$http.get("student_questions/#{@$route.params.student_question_id}").then((response) ->
+          @$set 'question', response.data.student_question.question_text
+        )
       refreshEntries: ->
-        @$http.get("student_questions/#{this.$route.params.student_question_id}/entries").then((response) ->
+        @$http.get("student_questions/#{@$route.params.student_question_id}/entries").then((response) ->
           @$set 'entries', response.data.student_questions
         )
       publishEntry: ->
-        entryText = this.newEntry.trim()
+        entryText = @newEntry.trim()
         if entryText
           data =
             student_question_id: 1
             text: entryText
-          @$http.post("student_questions/#{this.$route.params.student_question_id}/new_entry", data)
+          @$http.post("student_questions/#{@$route.params.student_question_id}/new_entry", data)
           @refreshEntries()
-          # @entries.unshift(entryText)
           @newEntry = ''
     ready: ->
+      @refreshStudentQuestion()
       @refreshEntries()
 </script>

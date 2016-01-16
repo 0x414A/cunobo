@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'get_current_user'
   end
 
-  resources :student_questions do
+  resources :student_questions, only: ['show'] do
     get 'entries'
     post 'new_entry'
   end

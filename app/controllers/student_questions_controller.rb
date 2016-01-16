@@ -1,4 +1,8 @@
 class StudentQuestionsController < ApplicationController
+  def show
+    render json: StudentQuestion.find_by_id(params[:id])
+  end
+
   def entries
     render json: student_question.entries.by_latest
   end
