@@ -39,11 +39,22 @@
   <div class="title-bar u-full-width">
     <span class="app-title app-title-font">cunobo.</span>
     <div class="user-status u-pull-right">  
-
+      <span class="current-user" v-if="currentUser">{{currentUser}}</span>
       <a class="button" data-method="delete" v-if="currentUser" href="/users/sign_out">Sign out</a>  
       <a class="button" href="/users/sign_in" v-else>Sign in</a>  
     </div> 
  </div>
 </template>
 
+<script lang="coffee">
+  currentUser = null
 
+  module.exports =
+    data: ->
+      currentUser: currentUser
+    ready: ->
+      this.$http.get('users/get_current_user').then((response) ->
+        if response.data.current_user
+          this.$set 'currentUser', response.data.current_user.email
+  )
+</script>
