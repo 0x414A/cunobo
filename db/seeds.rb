@@ -12,7 +12,7 @@ Question.create(fake_questions)
 
 # Create fake users
 generated_password = "n0ts3cur3"
-fake_users = 30.times.map do
+fake_users = 35.times.map do
   {
     email: Faker::Internet.email,
     password: generated_password,
@@ -21,8 +21,12 @@ fake_users = 30.times.map do
 end
 User.create!(fake_users)
 
+# Create fake teachers 
+fake_teachers = User.ids.first(5).map{|user_id| { user_id: user_id } }
+Teacher.create!(fake_teachers)
+
 # Create fake students
-fake_students = User.ids.map{|user_id| { user_id: user_id } }
+fake_students = User.ids.last(30).map{|user_id| { user_id: user_id } }
 Student.create!(fake_students)
 
 # Assign random students
