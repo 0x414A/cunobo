@@ -1,6 +1,13 @@
 <template>
-  <h1>This is some stuff</h1>
+  <title-bar></title-bar>
   <router-view></router-view>
 </template>
 
+<script lang="coffee">
+  TitleBar = require './title_bar.vue'
+  
+  module.exports =
+    components:
+      'title-bar': TitleBar
+</script>
 
