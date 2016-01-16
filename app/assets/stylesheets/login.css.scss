@@ -1,0 +1,49 @@
+@import 'constants';
+
+.login_form {
+  margin-left: 20px;
+  margin-top: 40px;
+
+  h2 {
+    color:  $medium-color;
+    font-weight: 600;
+    font-size: 18pt;
+  }
+
+  .field {
+    color:  $medium-color;
+    margin-bottom: 20px;
+    font-weight: 400px;
+    font-family: $font-stack
+  }
+
+  .submit_login {
+    input[type="submit"] {
+      color: $medium-color;
+      padding-left: 60px;
+      padding-right: 60px;
+      font-size: 12pt;
+      font-weight: 700 ;
+      font-family:  $font-stack;
+      border: 1px solid $medium-color;
+      border-radius: 8px
+    }
+  }
+
+  .submit_email {
+    input[type="submit"] {
+      color: $medium-color;
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 40px; 
+      font-size: 10pt;
+      font-weight: 400 ;
+      font-family:  $font-stack;
+      border: 1px solid $medium-color;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+}
+
