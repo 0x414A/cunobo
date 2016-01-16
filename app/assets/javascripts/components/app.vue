@@ -1,18 +1,6 @@
-<style>
-</style>
-
 <template>
-  <title-bar></title-bar>
+  <h1>This is some stuff</h1>
+  <router-view></router-view>
 </template>
 
-<script>
-  var TitleBar = require('./title_bar.vue')
 
-  module.exports = {
-    data: function () {
-    },
-    components: {
-      'title-bar': TitleBar
-    }
-  }
-</script>
