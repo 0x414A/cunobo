@@ -37,7 +37,6 @@ gem 'devise'
 gem 'pry-rails', :group => :development
 
 gem 'active_model_serializers'
->>>>>>> Format, display and publish entries for a fixed student question
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

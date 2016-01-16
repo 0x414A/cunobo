@@ -86,23 +86,21 @@
 
 <template>
   <section class="question-interface">
-    <div class="container">
-      <div class="row">
-        <h1>{{question}}</h1>
+    <div class="row">
+      <h1>{{question}}</h1>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <h2 class="prompt-author">{{prompt.author}}:</h2>
+        <h2>{{prompt.text}}</h2>
+        <textarea v-model="newEntry" placeholder="Write your thoughts here. Aim to write a few paragraphs!"></textarea>
+        <button v-on:click="publishEntry">Publish</button>
       </div>
-      <div class="row">
-        <div class="one-half column">
-          <h2 class="prompt-author">{{prompt.author}}:</h2>
-          <h2>{{prompt.text}}</h2>
-          <textarea v-model="newEntry" placeholder="Write your thoughts here. Aim to write a few paragraphs!"></textarea>
-          <button v-on:click="publishEntry">Publish</button>
-        </div>
-        <div class="one-half column">
-          <div class="entry" v-for="entry in entries" v-bind:class="{'first-entry' : $index == 0}">
-            {{entry.text}}
-            <div class="entry-metadata">
-              {{entry.author}} | {{entry.created_time}}
-            </div>
+      <div class="one-half column">
+        <div class="entry" v-for="entry in entries" v-bind:class="{'first-entry' : $index == 0}">
+          {{entry.text}}
+          <div class="entry-metadata">
+            {{entry.author}} | {{entry.created_time}}
           </div>
         </div>
       </div>
@@ -128,7 +126,7 @@
       entries: []
     methods:
       refreshEntries: ->
-        @$http.get('student_questions/1/entries').then((response) ->
+        @$http.get("student_questions/#{this.$route.params.student_question_id}/entries").then((response) ->
           @$set 'entries', response.data.student_questions
         )
       publishEntry: ->
@@ -137,7 +135,7 @@
           data =
             student_question_id: 1
             text: entryText
-          @$http.post('student_questions/1/new_entry', data)
+          @$http.post("student_questions/#{this.$route.params.student_question_id}/new_entry", data)
           @refreshEntries()
           # @entries.unshift(entryText)
           @newEntry = ''
