@@ -47,9 +47,6 @@
 </template>
 
 <script lang="coffee">
-  Vue = require 'vue'
-  Vue.use(require('vue-resource'))
-
   currentUser = null
 
   module.exports =

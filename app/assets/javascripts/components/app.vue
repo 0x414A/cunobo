@@ -1,18 +1,19 @@
-<style>
-</style>
-
 <template>
-  <title-bar></title-bar>
+  <div class="main">
+    <title-bar></title-bar>
+    <div class="container">
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
 
-<script>
-  var TitleBar = require('./title_bar.vue')
+<script lang="coffee">
+  TitleBar = require './title_bar.vue'
+  Question = require './question.vue'
 
-  module.exports = {
-    data: function () {
-    },
-    components: {
+  module.exports =
+    components:
       'title-bar': TitleBar
-    }
-  }
+      'question': Question
 </script>
+
