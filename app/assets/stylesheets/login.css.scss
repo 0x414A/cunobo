@@ -1,0 +1,31 @@
+@import 'constants';
+
+.login_form {
+  margin-left: 20px;
+  margin-top: 40px;
+
+  h2 {
+    color:  $medium-color;
+    font-weight: 150;
+    font-size: 25px;
+  }
+
+  .field {
+    color:  $medium-color;
+    margin-bottom: 20px;
+    font-weight: 400px;
+    font-family: $font-stack
+  }
+
+  input[type="submit"] {
+    color: $medium-color;
+    padding-left: 65px;
+    padding-right: 65px;
+    font-size: 14px;
+    font-weight: 700 ;
+    font-family:  $font-stack;
+    border: 1px solid #B1B1B1;
+    border-radius: 8px
+  }
+}
+
