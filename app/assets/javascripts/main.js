@@ -13,7 +13,7 @@ Vue.use(Resource)
 var App = require('./components/app.vue')
 
 // Views
-var Question = require('./components/question.vue')
+var Home = require('./components/home.vue')
 var Dashboard = require('./components/dashboard.vue')
 
 // Set routing
@@ -21,7 +21,7 @@ var router = new Router()
 
 router.map({
   '/home': {
-    component: Question
+    component: Home
   },
   '/dashboard': {
     component: Dashboard
