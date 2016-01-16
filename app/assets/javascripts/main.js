@@ -15,13 +15,17 @@ var App = require('./components/app.vue')
 // Views
 var Home = require('./components/home.vue')
 var Dashboard = require('./components/dashboard.vue')
+var QuestionInterface = require('./components/question_interface.vue')
 
 // Set routing
 var router = new Router()
 
 router.map({
-  '/home': {
+  '/': {
     component: Home
+  },
+  '/student_questions/:student_question_id': {
+    component: QuestionInterface
   },
   '/dashboard': {
     component: Dashboard

@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
 
+  def after_sign_in_path_for(user)
+    latest_student_question = ::LatestStudentQuestionFinder.new(user.student).latest_student_question
+    "#!/student_questions/#{latest_student_question.try(:id)}"
+  end
+
   protected
 
   def layout_by_resource
