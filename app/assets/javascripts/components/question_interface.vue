@@ -104,9 +104,8 @@
         <button v-on:click="publishEntry">Publish</button>
       </div>
       <div class="one-half column">
-        <div class="entry" v-for="entry in entries"
-             v-bind:class="{'first-entry' : $index == 0, 'entry-other-author' : entry.author != currentUser}">
-          {{entry.text}}
+        <div class="entry" v-for="entry in entries" v-bind:class="{'first-entry' : $index == 0}">
+          <div v-html="entry.text | marked">  </div>
           <div class="entry-metadata">
             {{entry.author}} | {{entry.created_time}}
           </div>
@@ -120,6 +119,7 @@
   Vue = require 'vue'
   Vue.use(require('vue-resource'))
   Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  Marked = require 'marked'
 
   entries = []
 
@@ -129,6 +129,8 @@
       question: ''
       newEntry: ''
       entries: []
+    filters: 
+      marked: Marked
     methods:
       getCurrentUser: ->
         @$http.get('users/get_current_user').then((response) ->
@@ -151,6 +153,7 @@
           @$http.post("student_questions/#{@$route.params.student_question_id}/new_entry", data)
           @refreshEntries()
           @newEntry = ''
+
     ready: ->
       @getCurrentUser()
       @refreshStudentQuestion()
