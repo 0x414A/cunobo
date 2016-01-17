@@ -50,4 +50,8 @@ group :development, :test do
 
   # Fake all the things
   gem 'faker'
+
+  # for testing
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
