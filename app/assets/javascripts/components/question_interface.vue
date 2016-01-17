@@ -2,6 +2,7 @@
   $background-color: #EFF4F9;
   $medium-color: #797A9E;
   $dark-color: #625F63;
+  $border-color: rgba(121, 122, 158, 0.50);
   $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   .question-interface {
@@ -30,7 +31,7 @@
 
     textarea {
       width: 100%;
-      height: 60vh;
+      height: 70vh;
       border-color: $dark-color;
       border-style: solid;
       border-width: 1px;
@@ -59,15 +60,23 @@
     .entry {
       border-bottom-style: solid;
       border-width: 1px;
-      border-color: $dark-color;
+      border-color: $border-color;
       padding-top: 25px;
       padding-bottom: 2px;
+      padding-left: 16px;
       color: $dark-color;
       font-family: $font-stack;
       font-size: 10pt;
       font-weight: 300;
       line-height: 18px;
       letter-spacing: 0.3px;
+    }
+
+    .entry-other-author {
+      border-left-style: solid;
+      border-left-width: 6px;
+      border-left-color: $border-color;
+      padding-left: 10px;
     }
 
     .first-entry {
@@ -91,13 +100,12 @@
     </div>
     <div class="row">
       <div class="one-half column">
-        <h2 class="prompt-author">{{prompt.author}}:</h2>
-        <h2>{{prompt.text}}</h2>
         <textarea v-model="newEntry" placeholder="Write your thoughts here. Aim to write a few paragraphs!"></textarea>
         <button v-on:click="publishEntry">Publish</button>
       </div>
       <div class="one-half column">
-        <div class="entry" v-for="entry in entries" v-bind:class="{'first-entry' : $index == 0}">
+        <div class="entry" v-for="entry in entries"
+             v-bind:class="{'first-entry' : $index == 0, 'entry-other-author' : entry.author != currentUser}">
           {{entry.text}}
           <div class="entry-metadata">
             {{entry.author}} | {{entry.created_time}}
@@ -117,14 +125,15 @@
 
   module.exports =
     data: ->
+      currentUser: ''
       question: ''
-      prompt:
-        author: 'Cunobot'
-        timestamp: null
-        text: 'Expand more on the action that you can take to achieve your goal in 2016. Can you come up with examples of short and long term goals you can set?'
       newEntry: ''
       entries: []
     methods:
+      getCurrentUser: ->
+        @$http.get('users/get_current_user').then((response) ->
+          @$set 'currentUser', response.data.current_user.email
+        )
       refreshStudentQuestion: ->
         @$http.get("student_questions/#{@$route.params.student_question_id}").then((response) ->
           @$set 'question', response.data.student_question.question_text
@@ -143,6 +152,7 @@
           @refreshEntries()
           @newEntry = ''
     ready: ->
+      @getCurrentUser()
       @refreshStudentQuestion()
       @refreshEntries()
 </script>
