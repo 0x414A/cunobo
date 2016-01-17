@@ -98,7 +98,7 @@
       </div>
       <div class="one-half column">
         <div class="entry" v-for="entry in entries" v-bind:class="{'first-entry' : $index == 0}">
-          {{entry.text}}
+          <div v-html="entry.text | marked">  </div>
           <div class="entry-metadata">
             {{entry.author}} | {{entry.created_time}}
           </div>
@@ -112,6 +112,7 @@
   Vue = require 'vue'
   Vue.use(require('vue-resource'))
   Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  Marked = require 'marked'
 
   entries = []
 
@@ -124,6 +125,8 @@
         text: 'Expand more on the action that you can take to achieve your goal in 2016. Can you come up with examples of short and long term goals you can set?'
       newEntry: ''
       entries: []
+    filters: 
+      marked: Marked
     methods:
       refreshStudentQuestion: ->
         @$http.get("student_questions/#{@$route.params.student_question_id}").then((response) ->
@@ -142,6 +145,7 @@
           @$http.post("student_questions/#{@$route.params.student_question_id}/new_entry", data)
           @refreshEntries()
           @newEntry = ''
+
     ready: ->
       @refreshStudentQuestion()
       @refreshEntries()
