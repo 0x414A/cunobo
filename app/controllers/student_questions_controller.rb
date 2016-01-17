@@ -11,6 +11,7 @@ class StudentQuestionsController < ApplicationController
     Entry.create(
       student_question_id: params[:student_question_id],
       text: params[:text],
+      user_id: current_user.id,
       published: true
     )
     render json: 'Created'
