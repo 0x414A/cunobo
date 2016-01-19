@@ -49,14 +49,6 @@
 </template>
 
 <script lang="coffee">
-  currentUser = null
-
   module.exports =
-    data: ->
-      currentUser: currentUser
-    ready: ->
-      @$http.get('users/get_current_user').then((response) ->
-        if response.data.current_user
-          @$set 'currentUser', response.data.current_user.email
-      )
+    props: ['currentUser']
 </script>
