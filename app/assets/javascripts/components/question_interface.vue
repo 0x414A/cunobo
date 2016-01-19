@@ -104,7 +104,7 @@
         <button v-on:click="publishEntry">Publish</button>
       </div>
       <div class="one-half column">
-        <div class="entry" v-for="entry in entries" v-bind:class="{'first-entry' : $index == 0}">
+        <div class="entry" v-for="entry in entries" v-bind:class="{'first-entry' : $index == 0, 'entry-other-author' : entry.author != currentUser}">
           <div v-html="entry.text | marked">  </div>
           <div class="entry-metadata">
             {{entry.author}} | {{entry.created_time}}
@@ -125,17 +125,13 @@
 
   module.exports =
     data: ->
-      currentUser: ''
       question: ''
       newEntry: ''
       entries: []
-    filters: 
+    filters:
       marked: Marked
+    props: ['currentUser']
     methods:
-      getCurrentUser: ->
-        @$http.get('users/get_current_user').then((response) ->
-          @$set 'currentUser', response.data.current_user.email
-        )
       refreshStudentQuestion: ->
         @$http.get("student_questions/#{@$route.params.student_question_id}").then((response) ->
           @$set 'question', response.data.student_question.question_text
@@ -155,7 +151,6 @@
           @newEntry = ''
 
     ready: ->
-      @getCurrentUser()
       @refreshStudentQuestion()
       @refreshEntries()
 </script>
