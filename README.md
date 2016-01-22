@@ -46,6 +46,12 @@ Bring up the server:
 $ docker-compose up
 ```
 
+If you wish to start the server with `pry` breakpoints enabled, you should run the following command to bring up the server instead:
+
+```sh
+$ docker-compose run --service-ports web
+```
+
 # Debug
 If you run into error where it's having trouble connecting to the daemon, then you may be have load the environment variables again (`$ eval...`). 
 
@@ -60,12 +66,3 @@ If you're having trouble starting the local server through `docker-compose up` a
 $ sudo rm -rf tmp
 $ mkdir tmp
 ```
-
-
-
-
-
-
-
-
-

@@ -50,4 +50,7 @@ group :development, :test do
 
   # Fake all the things
   gem 'faker'
+
+  # Allow setting breakpoints which open up a pry console
+  gem 'pry-byebug'
 end
