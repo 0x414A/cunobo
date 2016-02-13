@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def after_sign_in_path_for(user)
-    latest_student_question = ::LatestStudentQuestionFinder.new(user.student).latest_student_question
+    latest_student_question = ::LatestStudentQuestionFinder.new(user.student).find_or_create_latest_student_question
     "#!/student_questions/#{latest_student_question.try(:id)}"
   end
 
