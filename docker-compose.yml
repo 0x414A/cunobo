@@ -15,12 +15,12 @@ web:
 bundle:
   image: busybox
   volumes:
-    - ./.bundle
+    - .bundle:/bundle
 
 node:
   image: busybox
   volumes:
-    - ./node_modules
+    - node_modules:/node_modules
 
 db:
   image: postgres:9.5.0

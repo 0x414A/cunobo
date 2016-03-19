@@ -4,9 +4,9 @@ development: &default
   min_messages: WARNING
   pool: 5
   username: postgres
-  host: <%= ENV['CUNOBO_DB_1_PORT_5432_TCP_ADDR'] %>
-  port: <%= ENV['CUNOBO_DB_1_PORT_5432_TCP_PORT'] %>
+  host: <%= ENV['DB_PORT_5432_TCP_ADDR'] %>
+  port: <%= ENV['DB_PORT_5432_TCP_PORT'] %>
 
 test:
   <<: *default
-  database: cunobo_app_development 
+  database: cunobo_app_development
