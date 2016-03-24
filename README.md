@@ -39,6 +39,7 @@ Set up the database:
 
 ```sh
 $ docker-compose run --rm web bundle exec rake db:setup
+$ docker-compose run --rm web bundle exec rake db:seed
 ```
 
 Bring up the server:
