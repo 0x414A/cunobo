@@ -1,21 +1,31 @@
+# Pre-Requisites
+
+First, install [dlite](https://github.com/nlf/dlite) with [these](https://gist.github.com/0x414A/c1c52a031b0796ceef02d70ef2041931#file-install-dlite-markdown) instructions.
+
+Then install `docker` and `docker-compose` with Homebrew. you do **NOT** need `docker-machine`.
+
 # Setup
 
 Clone the repo:
 
 ```sh
-$ git clone git@github.com:cunobo/app.git
+$ git clone git@github.com:cunobo/api.git cunobo-api
 ```
 
 Go into the cloned repo:
 
 ```sh
-$ cd app
+$ cd cunobo-api 
 ```
 
-May need to load the environment variables for docker:
+If you installed **Docker Toolbox**, and are thus running `docker` with `virtualbox`, you may need to load the environment variables for docker:
+
 ```sh
 $ eval $(docker-machine env dev)
 ```
+
+Create a `config/secrets.yml` like what's posted [here](http://brandonhilkert.com/blog/using-rails-4-dot-1-secrets-for-configuration/).
+
 
 Then build the image:
 
@@ -55,6 +65,9 @@ $ docker-compose run --rm --service-ports web
 ```
 
 # Debug
+
+## Docker Toolbox
+
 If you run into error where it's having trouble connecting to the daemon, then you may be have load the environment variables again (`$ eval...`). 
 
 If there's trouble with the connection, then you may have to run one of the following codes:

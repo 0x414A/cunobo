@@ -10,7 +10,7 @@ web:
   volumes_from:
     - node
     - bundle
-  env_file: .env
+  #env_file: .env
 
 bundle:
   image: busybox
